@@ -1,1 +1,1 @@
-Repository for Super60 SOlutions
+Repository for Super60 Solutions

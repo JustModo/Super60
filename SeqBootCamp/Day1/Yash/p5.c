@@ -24,7 +24,7 @@ void main()
 
 // void main()
 // {
-//     int i = 43, c = 1;
+//     int i = 43, c = 1, d = 0;
 //     while (c <= 4)
 //     {
 //         int n = i * 7;
@@ -34,5 +34,7 @@ void main()
 //         c++;
 
 //         i += 60;
+//         d++;
 //     }
+//     printf("Iteration- %d", d);
 // }
