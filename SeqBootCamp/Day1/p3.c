@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+//3 6 9 12 18 21 24 27
+
 void main()
 {
     int n, sum = 0;
