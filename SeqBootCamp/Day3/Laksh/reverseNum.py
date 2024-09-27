@@ -13,6 +13,13 @@ def numToWords(number)->None:
 
 
 num = input("Enter Number: ")
-num = reversed(num)
+num = list(reversed(num))
+#remove trailing
+while(num[0]=='0'):
+    num.pop(0)
+
 for digit in num:
-    numToWords(int(digit))
+    try:
+        numToWords(int(digit))
+    except ValueError:
+        print("NaN", end=" ")
