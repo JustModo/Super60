@@ -1,8 +1,8 @@
 //Write a program to find the largest and second largest of 3 numbers
 
-let a = 13,
+let a = 11,
   b = 11,
-  c = 15;
+  c = 11;
 
 if (a > b) {
   a > c
