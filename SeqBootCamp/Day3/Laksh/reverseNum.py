@@ -1,3 +1,4 @@
+#function to convert number to words
 def numToWords(number)->None:
     match number:
         case 1: print("one", end=" ")
@@ -11,8 +12,15 @@ def numToWords(number)->None:
         case 9: print("nine", end=" ")
         case 0: print("zero", end=" ")
 
-
+#reversed the number
 num = input("Enter Number: ")
-num = reversed(num)
+num = list(reversed(num))
+#remove trailing zeroes
+while(num[0]=='0'):
+    num.pop(0)
+#converts number to word
 for digit in num:
-    numToWords(int(digit))
+    try:
+        numToWords(int(digit))
+    except ValueError:
+        print("NaN", end=" ")
