@@ -1,7 +1,7 @@
 import java.util.*;
 import java.math.*;
 
-public class qwe {
+public class todig{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt(), b = a, n,n1;
