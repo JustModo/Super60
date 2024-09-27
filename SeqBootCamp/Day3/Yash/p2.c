@@ -5,6 +5,7 @@ void main()
 {
     char num[100];
     scanf("%s", num);
+    // strrev(num);
     for (int i = 0; i < strlen(num); i++)
     {
         switch (num[i])
