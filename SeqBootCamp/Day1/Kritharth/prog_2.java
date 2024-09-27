@@ -3,11 +3,11 @@ import java.util.Scanner;
 
 public class prog_2 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int mul = 3;
-        for (int i = 1; mul < n; i++) {
-            if(i%5 == 0)
+        try (Scanner sc = new Scanner(System.in)) {
+            int n = sc.nextInt();
+            int mul = 3;
+            for (int i = 1; mul < n; i++) {
+                if(i%5 == 0)
                 {
                     continue;
                 }
@@ -15,8 +15,8 @@ public class prog_2 {
                 if (mul < n) {
                     break;
                 }
-            System.out.print(mul +"  ");
+                System.out.print(mul +"  ");
+            }
         }
-        sc.close();
     }
 }
