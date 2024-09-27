@@ -2,8 +2,10 @@
 
 threeNums = [1,4,7]
 
-for _ in range(15):
-    print(threeNums[0])
+n = int(input("N= "))
+
+for _ in range(n):
+    print(threeNums[0], end=" ")
     nextNum = sum(threeNums)
     threeNums.pop(0)
     threeNums.append(nextNum)
