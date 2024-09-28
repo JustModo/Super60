@@ -3,7 +3,7 @@
 
 void main()
 {
-    int num = 10, i = 0;
+    int num = 58, i = 0;
     int bin[32];
     if (num == 0)
     {
