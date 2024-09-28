@@ -11,6 +11,10 @@ public class binToDec {
         int rem;
         while (bn != 0) {
             rem = bn%10;
+            if(rem !=0 || rem != 1){
+                System.out.println("Enter a valid binary number!");
+                return;
+            }
             dc = dc + rem*(int)Math.pow(2, i);
             i++;
             bn/=10;
