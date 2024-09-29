@@ -3,7 +3,7 @@
 
 numbers = [6,8,10]
 
-for i in range(1,11):
+for i in range(1,16):
     sumDiff = (numbers[1]-numbers[0])+(numbers[2]-numbers[1])
     if i%2==0:
         print(f"-{numbers[0]}", end=" ")
