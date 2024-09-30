@@ -36,5 +36,6 @@ public class pattern7 {
             lThree += lFour;
             lFour += lFive;
         }
+        sc.close();
     }
 }
