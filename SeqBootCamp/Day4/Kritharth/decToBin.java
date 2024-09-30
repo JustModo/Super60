@@ -14,5 +14,6 @@ public class decToBin {
             dec/=2;
         }
         System.out.println(dec);
+        sc.close();
     }
 }
