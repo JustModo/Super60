@@ -1,1 +1,1 @@
-mysql -u root -p test < test.sql
+mysql test < test.sql
