@@ -44,7 +44,7 @@ WHERE
 -- Get the total number of bloodtests done for Aisha
 SELECT
     m.firstname AS 'Name',
-    COUNT(*) AS 'Blood Tests Done'
+    COUNT(*) AS 'BloodTestsDone'
 FROM
     memberinfo m
     INNER JOIN cardiodiagnosis c ON m.member_id = c.memberinfo_member_id
@@ -226,19 +226,288 @@ FROM
 
 -- Get the total number of members in the database
 SELECT
-    COUNT(*) AS 'Total Members'
+    COUNT(*) AS 'TotalMembers'
 FROM
     memberinfo;
 
 -- To get the total number of blood tests done
 SELECT
-    COUNT(*) AS 'Total Blood Tests'
+    COUNT(*) AS 'TotalBloodTests'
 FROM
     bloodtest;
 
 -- To get the average cholestrol level for members
-
-
+SELECT
+    m.username,
+    b.serumcholesterol
+FROM
+    memberinfo m
+    INNER JOIN cardiodiagnosis c ON c.memberinfo_member_id = m.member_id
+    INNER JOIN bloodtest b ON b.cardiodiagnosis_cardio_id = c.cardio_id;
 
 -- To get the max peak value in symptoms
+SELECT
+    MAX(s.oldpeak) as 'MaxPeakValue'
+FROM
+    memberinfo m
+    INNER JOIN cardiodiagnosis c ON c.memberinfo_member_id = m.member_id
+    INNER JOIN symptom s ON c.cardio_id = s.cardiodiagnosis_cardio_id;
+
 -- Get the list of tests done between 2015 Jan 1st and 2019 Jan 31st
+SELECT
+    *
+FROM
+    bloodtest
+WHERE
+    date BETWEEN '2019-01-01'
+    AND '2019-01-31';
+
+-- Get the number of males and females aged between 50 and 60
+SELECT
+    CASE
+        WHEN gender = 0 THEN 'Female'
+        WHEN gender = 1 THEN 'Male'
+    END AS 'Gender',
+    COUNT(*) AS 'Count'
+FROM
+    memberinfo
+WHERE
+    age BETWEEN 50
+    AND 60
+GROUP BY
+    gender;
+
+-- Get the list of tests where blood pressure is between 100 and 200
+SELECT
+    *
+FROM
+    bloodtest
+WHERE
+    bloodpressure BETWEEN 100
+    AND 200;
+
+-- Get the list of symptoms diagnosed for patients
+SELECT
+    *
+FROM
+    symptom;
+
+-- Get the average age of patients in the database
+SELECT
+    AVG(age) AS 'AverageAge'
+FROM
+    memberinfo;
+
+-- Get the total cities for each state available
+SELECT
+    state AS 'State',
+    COUNT(city) AS 'NumberOfCities'
+FROM
+    addressinfo
+GROUP BY
+    state;
+
+-- Get number of Patients between age group 
+-- 10-20
+-- 20-30
+-- 30-40
+-- 40-50
+-- 50-60
+-- 60-70
+SELECT
+    CASE
+        WHEN age BETWEEN 10
+        AND 20 THEN '10-20'
+        WHEN age BETWEEN 20
+        AND 30 THEN '20-30'
+        WHEN age BETWEEN 30
+        AND 40 THEN '30-40'
+        WHEN age BETWEEN 40
+        AND 50 THEN '40-50'
+        WHEN age BETWEEN 50
+        AND 60 THEN '50-60'
+        WHEN age BETWEEN 60
+        AND 70 THEN '60-70'
+        ELSE '70+'
+    END AS AgeRange,
+    COUNT(*) AS `Count`
+FROM
+    memberinfo
+GROUP BY
+    AgeRange;
+
+-- Get the list of meembers and their address
+SELECT
+    *
+FROM
+    memberinfo m
+    INNER JOIN addressinfo a ON m.member_id = a.memberinfo_member_id;
+
+-- Get the list of meembers and their cardiohistory
+SELECT
+    *
+FROM
+    memberinfo m
+    INNER JOIN cardiodiagnosis c ON m.member_id = c.memberinfo_member_id;
+
+-- Get the list of meembers and their diseases
+SELECT
+    *
+FROM
+    memberinfo m
+    INNER JOIN cardiodiagnosis c ON m.member_id = c.memberinfo_member_id
+    INNER JOIN diseasedetail d ON d.cardiodiagnosis_cardio_id = c.cardio_id;
+
+-- To find the list of female who have been digonised with heart attack
+SELECT
+    *
+FROM
+    memberinfo m
+    INNER JOIN cardiodiagnosis c ON m.member_id = c.memberinfo_member_id
+WHERE
+    m.gender = 0;
+
+-- get the list of female members and their cardio information for people aged above 50
+SELECT
+    *
+FROM
+    memberinfo m
+    INNER JOIN cardiodiagnosis c ON m.member_id = c.memberinfo_member_id
+WHERE
+    m.gender = 0
+    AND age > 50;
+
+-- To get the list of males who have their blood pressure > 140 and not had a heart attack
+SELECT
+    *
+FROM
+    memberinfo m
+    INNER JOIN cardiodiagnosis c ON m.member_id = c.memberinfo_member_id
+    INNER JOIN bloodtest b ON b.cardiodiagnosis_cardio_id = c.cardio_id
+WHERE
+    b.bloodpressure > 140
+    AND c.cardioarrestdetected = 0
+    and m.gender = 1;
+
+-- To get the list of members who had heart attack from state "mountain province"
+SELECT
+    *
+FROM
+    memberinfo m
+    INNER JOIN cardiodiagnosis c ON m.member_id = c.memberinfo_member_id
+    INNER JOIN addressinfo a ON m.member_id = a.memberinfo_member_id
+WHERE
+    a.state = 'mountain province';
+
+-- To get the list of members who are males and their disease with their symptoms for people aged less than 40
+SELECT
+    *
+FROM
+    memberinfo m
+    INNER JOIN cardiodiagnosis c ON m.member_id = c.memberinfo_member_id
+    INNER JOIN diseasedetail d ON d.cardiodiagnosis_cardio_id = c.cardio_id
+    INNER JOIN symptom s on s.cardiodiagnosis_cardio_id = c.cardio_id
+WHERE
+    m.age < 40
+    AND m.gender = 1;
+
+-- To get count of members from "mountain province" aged between 50 and 60
+SELECT
+    COUNT(*) AS 'Count'
+FROM
+    memberinfo m
+    INNER JOIN addressinfo a ON m.member_id = a.memberinfo_member_id
+WHERE
+    a.state = 'mountain province'
+    AND m.age BETWEEN 50
+    AND 60;
+
+-- To get the count of male and female members who have blood pressure > 140 and detected heart attack
+SELECT
+    CASE
+        WHEN gender = '0' THEN 'Female'
+        WHEN gender = '1' THEN 'Male'
+    END AS 'Gender',
+    COUNT(*)
+FROM
+    memberinfo m
+    INNER JOIN cardiodiagnosis c ON m.member_id = c.memberinfo_member_id
+    INNER JOIN bloodtest b ON b.cardiodiagnosis_cardio_id = c.cardio_id
+WHERE
+    b.bloodpressure > 140
+    AND c.cardioarrestdetected = 1
+GROUP BY
+    gender;
+
+-- Average blood pressure of people aged between 40-50 and 50-60
+SELECT
+    CASE
+        WHEN m.age BETWEEN 40
+        AND 50 THEN '40-50'
+        WHEN m.age BETWEEN 50
+        AND 60 THEN '50-60'
+    END AS AgeRange,
+    AVG(b.bloodpressure) AS 'Blood Pressure'
+FROM
+    memberinfo m
+    JOIN cardiodiagnosis c ON m.member_id = c.memberinfo_member_id
+    JOIN bloodtest b ON c.cardio_id = b.cardiodiagnosis_cardio_id
+WHERE
+    m.age BETWEEN 40
+    AND 60
+GROUP BY
+    AgeRange;
+
+-- To get the list of diseases for people having high blood pressure in the range of 120 - 180 sorted across gender
+SELECT
+    d.diagnoseddate,
+    d.isrecovered,
+    d.recovereddate,
+    m.gender
+FROM
+    memberinfo m
+    INNER JOIN cardiodiagnosis c ON m.member_id = c.memberinfo_member_id
+    INNER JOIN diseasedetail d ON c.cardio_id = d.cardiodiagnosis_cardio_id
+    INNER JOIN bloodtest b ON b.cardiodiagnosis_cardio_id = c.cardio_id
+WHERE
+    b.bloodpressure BETWEEN 120
+    AND 180
+ORDER BY
+    m.gender;
+
+-- To get the count of people who have got their xrays every month from the state of Special Province
+SELECT
+    MONTH(x.date) as month,
+    COUNT(*)
+FROM
+    memberinfo m
+    INNER JOIN addressinfo a ON m.member_id = a.memberinfo_member_id
+    INNER JOIN cardiodiagnosis c ON m.member_id = c.memberinfo_member_id
+    INNER JOIN xray x ON x.cardiodiagnosis_cardio_id = c.cardio_id
+WHERE
+    a.state = 'special provinces'
+GROUP BY
+    month;
+
+-- To get the average age of people diagnosed with heart attack for each state across male and female
+SELECT
+    a.state,
+    AVG(
+        CASE
+            WHEN m.gender = '0' THEN m.age
+        END
+    ) AS 'Female',
+    AVG(
+        CASE
+            WHEN m.gender = '1' THEN m.age
+        END
+    ) AS 'Male'
+FROM
+    memberinfo m
+    INNER JOIN addressinfo a ON m.member_id = a.memberinfo_member_id
+    INNER JOIN cardiodiagnosis c ON c.memberinfo_member_id = m.member_id
+GROUP BY
+    a.state;
+
+-- To get the count of people for each state having been diagnosed with heart attack who have slope value as 2 and having had atleast 1 xray and 1 symptom
+
