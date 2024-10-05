@@ -22,7 +22,7 @@ public class pattern8 {
                 
             }
             System.out.println();
-            
+            sc.close();
         }
     }    
 }
