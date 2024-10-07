@@ -14,12 +14,18 @@ WHERE
     d.diagnoseddate = '2019-01-25';
 
 -- 3 Get all the predictions for the day and sort it based on highest percentage of probability at the top
--- ??
--- 4 Get all the unique cities 
+SELECT
+    *
+FROM
+    cardiodiagnosis c
+WHERE
+    c.cardioarrestdetected = 1;
+
+c.-- 4 Get all the unique cities 
 SELECT
     UNIQUE(a.city)
-FROM-
-    addressinfo a
+FROM
+    - addressinfo a
 ORDER BY
     a.city ASC;
 
