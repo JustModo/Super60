@@ -21,7 +21,7 @@
     -- and bt.serumcholesterol > 240 
 	-- and s.exang = 1
     -- and s.cp >= 1
-    -- and bt.date="2019-01-22;
+    -- and bt.date="2019-01-22;	
 -- 3.Get all the predictions for the day and sort it based on highest percentage of probability at the top
 -- SELECT m.member_id,m.username,m.age,m.gender
 -- FROM memberinfo m 
