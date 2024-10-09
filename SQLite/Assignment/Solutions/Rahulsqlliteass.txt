@@ -1,0 +1,346 @@
+-- 1.Get all the predictions
+-- SELECT m.member_id,m.username,m.age,m.gender
+-- FROM memberinfo m 
+	-- INNER JOIN cardiodiagnosis cd ON m.member_id = cd.memberinfo_member_id
+    -- INNER JOIN bloodtest bt ON bt.cardiodiagnosis_cardio_id = cd.cardio_id
+    -- INNER JOIN symptom s ON s.cardiodiagnosis_cardio_id = cd.cardio_id   
+-- WHERE bt.fbs = 1  
+	-- and bt.bloodpressure > 140 
+    -- and bt.serumcholesterol > 240 
+	-- and s.exang = 1
+    -- and s.cp >= 1;
+
+-- 2. Get all the predictions for the day
+-- SELECT m.member_id,m.username,m.age,m.gender,cd.date
+-- FROM memberinfo m 
+	-- INNER JOIN cardiodiagnosis cd ON m.member_id = cd.memberinfo_member_id
+    -- INNER JOIN bloodtest bt ON bt.cardiodiagnosis_cardio_id = cd.cardio_id
+    -- INNER JOIN symptom s ON s.cardiodiagnosis_cardio_id = cd.cardio_id    
+-- WHERE bt.fbs = 1  
+	-- and bt.bloodpressure > 140 
+    -- and bt.serumcholesterol > 240 
+	-- and s.exang = 1
+    -- and s.cp >= 1
+    -- and bt.date="2019-01-22;	
+-- 3.Get all the predictions for the day and sort it based on highest percentage of probability at the top
+-- SELECT m.member_id,m.username,m.age,m.gender
+-- FROM memberinfo m 
+	-- INNER JOIN cardiodiagnosis cd ON m.member_id = cd.memberinfo_member_id
+    -- INNER JOIN bloodtest bt ON bt.cardiodiagnosis_cardio_id = cd.cardio_id
+    -- INNER JOIN symptom s ON s.cardiodiagnosis_cardio_id = cd.cardio_id   
+-- WHERE bt.fbs = 1  
+	-- and bt.bloodpressure > 140 
+    -- and bt.serumcholesterol > 240 
+	-- and s.exang = 1
+    -- and s.cp >= 1
+-- ORDER by bt.bloodpressure DESC
+
+-- 4. Get all the unique cities 
+-- SELECT city
+-- FROM addressinfo
+-- GROUP by city
+
+-- 5 Get all the members who are from a city  'Burgos'
+-- SELECT m.username
+-- FROM  memberinfo m 
+	-- INNER JOIN addressinfo ai on ai.memberinfo_member_id = m.member_id
+-- WHERE city = "Burgos";
+
+-- 6.Get all the members who are from 'flora' city
+-- SELECT m.username
+-- FROM  memberinfo m 
+	-- INNER JOIN addressinfo ai on ai.memberinfo_member_id = m.member_id
+ -- WHERE city = "flora";
+ 
+ -- 7.Get the total number of bloodtests done for Aisha
+ -- SELECT count(*)"TestsAisha"
+ -- FROM memberinfo m
+ 	-- INNER JOIN cardiodiagnosis cd on cd.memberinfo_member_id = m.member_id
+    -- INNER JOIN bloodtest b on b.cardiodiagnosis_cardio_id = cd.cardio_id
+-- WHERE m.username = "Aisha"
+
+-- 8.Get the xray details of Ajay whose cardio was done on 26th of Jan 2019
+-- SELECT x.date,x.ca
+-- FROM memberinfo m
+	-- INNER JOIN cardiodiagnosis cd on m.member_id = cd.memberinfo_member_id
+    -- INNER JOIN xray x on x.cardiodiagnosis_cardio_id = cd.cardio_id
+-- WHERE m.username = "Ajay"
+	-- and x.date = "2023-01-26";
+    
+-- 9.Get all the members who are from city burgos and flora
+-- SELECT m.username
+-- FROM addressinfo a
+	-- INNER JOIN memberinfo m on m.member_id = a.memberinfo_member_id
+-- WHERE a.city = "Burgos"
+	-- OR a.city = "flora"
+
+-- 10.Get the total number of bloodtests done for aberson
+-- SELECT m.username
+-- FROM memberinfo m
+	-- INNER JOin cardiodiagnosis cd on cd.memberinfo_member_id = m.member_id
+    -- INNER JOIN bloodtest bt on bt.cardiodiagnosis_cardio_id =  cd.cardio_id
+-- WHERE m.firstname = "Aberson"
+
+-- 11.Get all address details for member ID M303
+-- SELECT a.city,a.state,a.country,a.pincode
+-- FROM memberinfo m
+	-- INNER JOIN addressinfo a on a.memberinfo_member_id = m.member_id
+-- WHERE m.member_id = "M303"
+
+-- 12.Get all xray details for cardio id cid 122
+-- SELECT x.xray_id,x.date,x.ca
+-- FROM xray x
+	-- INNER JOIN cardiodiagnosis cd on cd.cardio_id = x.cardiodiagnosis_cardio_id
+-- WHERE cd.cardio_id = "cid122"
+
+-- 13.Get all symptom details whose cardio ID = CID250 and CID300
+-- SELECT s.symptom_id,s.date,s.exang,s.oldpeak,s.cp
+-- FROM symptom  s 
+	-- INNER JOIN cardiodiagnosis cd on cd.cardio_id = s.cardiodiagnosis_cardio_id
+-- WHERE cd.cardio_id BETWEEN "cid250" and "cid300"
+
+-- 14.Get all symptom details for month july and year 2019
+-- SELECT *
+-- FROM symptom
+-- WHERE YEAR(date) = 2019
+	-- and MONTH(date) = 7
+
+-- 15. Get xray details for member with lastname "dailley"
+-- SELECT x.xray_id,x.date,x.ca
+-- FROM memberinfo m 
+	-- INNER join cardiodiagnosis cd on cd.memberinfo_member_id = m.member_id
+    -- INNER JOIN xray x on x.cardiodiagnosis_cardio_id = cd.cardio_id
+-- WHERE m.lastname = "dailley"
+
+-- 16.Get wearabledevicedata details from cardio ID from CID100 to CID200
+-- SELECT wd.wearable_device_id,wd.thalach,wd.slope,wd.date
+-- from wearabledevicedata wd
+	-- INNER join cardiodiagnosis cd on cd.cardio_id = wd.cardiodiagnosis_cardio_id
+-- WHERE cd.cardio_id BETWEEN "cid100" and "cid200" 
+
+-- 17.Display all cardiodiagnosis details who first name start from letter "A"
+-- SELECT cd.cardio_id,cd.cardioarrestdetected,cd.date
+-- FROM cardiodiagnosis cd
+	-- INNER JOIN memberinfo m on m.member_id = cd.memberinfo_member_id
+-- WHERE m.firstname LIKE 'A%'
+
+-- 18.Display all cardiodiagnosis details who first name start from letter "A" and ends at letter "A"
+-- SELECT cd.cardio_id,cd.cardioarrestdetected,cd.date
+-- FROM cardiodiagnosis cd
+	-- INNER JOIN memberinfo m on m.member_id = cd.memberinfo_member_id
+-- WHERE m.firstname LIKE 'A%A'
+
+-- 19.To get all the members from the MemberInfo
+-- SELECT *
+-- from memberinfo
+
+-- 20.To get all the addresess of Members
+-- SELECT m.member_id, a.address_id,a.city,a.state,a.country,a.pincode
+-- FROM memberinfo m 
+	-- INNER JOIN addressinfo a on a.memberinfo_member_id = m.member_id
+
+-- 21.To get a list of wearable device information
+-- SELECT * 
+-- FROM wearabledevicedata
+
+-- 22.To get a list of all the blood tests done
+-- SELECT *
+-- FROM bloodtest 
+
+-- 23.Get a list of members who are aged greater than 50
+-- SELECT username
+-- FROM memberinfo
+-- WHERE age > 50
+
+-- 24.To get list of addresses for the city flora
+-- SELECT * 
+-- FROM addressinfo 
+-- where city = "flora"
+
+-- 25.Get list of all unique states
+-- SELECT state 
+-- FROM addressinfo 
+-- GROUP by state
+
+-- 26.Get the total number of members in the database
+-- SELECT COUNT(*)
+-- FROM memberinfo
+
+-- 27.To get the total number of blood tests done
+-- SELECT COUNT(blood_id)
+-- FROM bloodtest 
+
+-- 28.To get the average cholestrol level for members
+-- SELECT AVG(serumcholesterol)
+-- FROM bloodtest
+
+-- 29.To get the max peak value in symptoms
+-- SELECT MAX(oldpeak)
+-- FROM symptom
+
+-- 30.Get the list of tests done between 2015 Jan 1st and 2019 Jan 31st
+-- SELECT *
+-- FROM bloodtest 
+-- WHERE date BETWEEN "2015-01-01" and  "2019-01-31"
+
+-- 31.Get the number of males and females aged between 50 and 60
+-- SELECT gender , COUNT(username)"Number"
+-- FROM memberinfo
+-- WHERE age BETWEEN 50 and 60
+-- GROUP by gender
+
+-- 32.Get the list of tests where blood pressure is between 100 and 200
+-- SELECT *
+-- FROM bloodtest 
+-- WHERE bloodpressure BETWEEN 100 and 200
+
+-- 33.Get the list of symptoms diagnosed for patients
+-- SELECT *
+-- FROM symptom 
+
+-- 34.Get the average age of patients in the database
+-- SELECT AVG(age)
+-- FROM memberinfo
+
+-- 35.Get the total cities for each state available
+-- SELECT state,city
+-- FROM addressinfo 
+-- ORDER by city 
+
+-- 36.a. Get number of Patients between age group 10-20
+-- SELECT *
+-- FROM memberinfo
+-- WHERE age BETWEEN 10 and 20
+-- 36.b. 20-30
+-- SELECT *
+-- FROM memberinfo
+-- WHERE age BETWEEN 20 and 30
+-- 36.c. 30-40
+-- SELECT *
+-- FROM memberinfo
+-- WHERE age BETWEEN 30 and 40
+-- 36.d. 40-50
+-- SELECT *
+-- FROM memberinfo
+-- WHERE age BETWEEN 40 and 50
+-- 36.e 50-60
+-- SELECT *
+-- FROM memberinfo
+-- WHERE age BETWEEN 50 and 60
+-- 36.f. 60-70
+-- SELECT *
+-- FROM memberinfo
+-- WHERE age BETWEEN 60 and 70
+
+-- 37.Get the list of meembers and their address
+-- SELECT * 
+-- FROM memberinfo m
+	-- INNER JOIN addressinfo a on a.memberinfo_member_id = m.member_id
+    
+-- 38.Get the list of meembers and their cardiohistory
+-- SELECT * 
+-- FROM memberinfo m
+	-- INNER JOIN cardiodiagnosis a on a.memberinfo_member_id = m.member_id
+   
+-- 39.Get the list of meembers and their diseases
+-- SELECT * 
+-- FROM memberinfo m
+	-- INNER JOIN cardiodiagnosis cd on cd.memberinfo_member_id = m.member_id
+    -- INNER JOIN diseasedetail d on d.cardiodiagnosis_cardio_id = cd.cardio_id
+
+-- 40.To find the list of female who have been digonised with heart attack
+-- SELECT m.username
+-- FROM memberinfo m
+	-- INNER JOIN cardiodiagnosis cd on cd.memberinfo_member_id = m.member_id
+-- WHERE m.gender = 0
+	-- and cd.cardioarrestdetected = 1
+
+ -- 41.get the list of female members and their cardio information for people aged above 50 
+-- SELECT m.username,cd.cardio_id,cd.cardioarrestdetected,cd.date
+-- FROM memberinfo m
+	-- INNER JOIN cardiodiagnosis cd on cd.memberinfo_member_id = m.member_id
+-- WHERE m.gender = 0
+	-- and m.age > 50
+    
+-- 42.To get the list of males who have their blood pressure > 140 and not had a heart attack
+-- SELECT m.username
+-- FROM memberinfo m 
+	-- INNER JOIN cardiodiagnosis cd on cd.memberinfo_member_id =  m.member_id 
+    -- INNER JOIN bloodtest bt on bt.cardiodiagnosis_cardio_id = cd.cardio_id
+-- WHERE m.gender = 1
+	-- and bt.bloodpressure > 140
+    -- and cd.cardioarrestdetected = 0
+
+-- 43.To get the list of members who had heart attack from state "mountain province"
+-- SELECT m.username
+-- FROM memberinfo m 
+	-- INNER JOIN cardiodiagnosis cd on cd.memberinfo_member_id =  m.member_id 
+    -- INNER JOIN addressinfo a on a.memberinfo_member_id = m.member_id
+-- WHERE cd.cardioarrestdetected = 1
+	-- and a.state = "mountain province"
+
+-- 44.To get the list of members who are males and their disease with their symptoms for people aged less than 40
+-- SELECT m.username,dd.disease_id,dd.diagnoseddate,dd.recovereddate,
+	-- dd.isrecovered,s.symptom_id,s.date,s.exang,s.oldpeak,s.cp
+-- FROM memberinfo m 
+	-- INNER JOIN cardiodiagnosis cd on cd.memberinfo_member_id = m.member_id
+    -- INNER JOIN diseasedetail dd on dd.cardiodiagnosis_cardio_id = cd.cardio_id
+    -- INNER JOIN symptom s on s.cardiodiagnosis_cardio_id = cd.cardio_id
+-- WHERE m.age < 40
+
+-- 45.To get count of members from "mountain province" aged between 50 and 60
+-- SELECT count(*)
+-- FROM memberinfo m
+	-- INNER JOIN addressinfo a on a.memberinfo_member_id = m.member_id
+-- WHERE a.state = "mountain province"
+	-- and m.age BETWEEN 50 and 60
+    
+-- 46.To get the count of male and female members who have blood pressure > 140 and detected heart attack
+-- SELECT m.gender,COUNT(*)"Number"
+-- FROM memberinfo m 
+	-- INNER JOIN cardiodiagnosis cd on cd.memberinfo_member_id = m.member_id
+    -- INNER JOIN bloodtest bt on bt.cardiodiagnosis_cardio_id = cd.cardio_id
+-- WHERE bt.bloodpressure > 140 
+	-- and cd.cardioarrestdetected = 1
+    
+-- 47.Average blood pressure of people aged between 40-50 and 50-60
+-- SELECT AVG(bt.bloodpressure)
+-- FROM memberinfo m 
+	-- INNER JOIN cardiodiagnosis cd on cd.memberinfo_member_id = m.member_id
+    -- INNER JOIN bloodtest bt on bt.cardiodiagnosis_cardio_id = cd.cardio_id
+-- WHERE m.age BETWEEN 40 and 50 and 60
+
+-- 48.To get the list of diseases for people having high blood pressure in the range of 120 - 180 sorted across gender 
+-- SELECT dt.disease_id,dt.diagnoseddate,dt.recovereddate,dt.isrecovered
+-- FROM memberinfo m 
+	-- INNER JOIN cardiodiagnosis cd on cd.memberinfo_member_id = m.member_id
+    -- INNER JOIN bloodtest bt on bt.cardiodiagnosis_cardio_id = cd.cardio_id
+    -- INNER JOIN diseasedetail dt on dt.cardiodiagnosis_cardio_id = cd.cardio_id
+-- WHERE bt.bloodpressure BETWEEN 120 and 180
+-- ORDER by m.gender
+
+-- 49.To get the count of people who have got their xrays every month from the state of Special Province
+-- SELECT MONTH(x.date)"Months", count(*)"Number"
+-- FROM memberinfo m 
+	-- INNER JOIN cardiodiagnosis cd on cd.memberinfo_member_id = m.member_id
+    -- INNER JOIN xray x on x.cardiodiagnosis_cardio_id = cd.cardio_id
+    -- INNER JOIN addressinfo a on a.memberinfo_member_id = m.member_id
+-- WHERE a.state = "Special Provinces"
+
+-- 50.To get the average age of people diagnosed with heart attack for each state across male and female
+-- SELECT m.gender,AVG(m.age)
+-- FROM memberinfo m 
+	-- INNER JOIN cardiodiagnosis cd on cd.memberinfo_member_id = m.member_id
+-- WHERE cd.cardioarrestdetected = 1
+-- GROUP by m.gender
+
+-- 51.To get the count of people for each state having been diagnosed with heart attack 
+-- who have slope value as 2 (and having had atleast 1 xray and 1 symptom)n/
+-- SELECT a.state,COUNT(cd.cardioarrestdetected)"DetectedNumbers"
+-- FROM memberinfo m 
+	-- INNER JOIN cardiodiagnosis cd on cd.memberinfo_member_id = m.member_id
+    -- INNER JOIN wearabledevicedata wd on wd.cardiodiagnosis_cardio_id =  cd.cardio_id
+    -- INNER JOIN addressinfo a on a.memberinfo_member_id =  m.member_id
+-- WHERE cd.cardioarrestdetected = 1
+	-- AND wd.slope = 2
+-- GROUP by a.state

@@ -1,0 +1,3 @@
+Filter - Ctrl + Shrift + L
+Add Row - Ctrl + +
+Remove Row - Ctrl + -

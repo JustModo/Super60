@@ -1,0 +1,12 @@
+1. Info you need,
+2. Which table info is in
+3. Join conditions
+4. Aggregate fun
+5. where conditions
+6. Group by
+7. sorting
+
+- Master Data - Repeatable standard set of data
+- Transactional Data - Non standard values
+
+Min/Max Cardinality
