@@ -19,9 +19,11 @@ SELECT
 FROM
     cardiodiagnosis c
 WHERE
-    c.cardioarrestdetected = 1;
+    c.cardioarrestdetected = 1
+ORDER BY
+    c.date;
 
-c.-- 4 Get all the unique cities 
+-- 4 Get all the unique cities 
 SELECT
     UNIQUE(a.city)
 FROM
@@ -56,7 +58,7 @@ FROM
     INNER JOIN cardiodiagnosis c ON m.member_id = c.memberinfo_member_id
     INNER JOIN bloodtest b ON b.cardiodiagnosis_cardio_id = c.cardio_id
 WHERE
-    m.firstname = 'Aisha';
+    m.firstname = "Aisha";
 
 -- 8 Get the xray details of Ajay whose cardio was done on 26th of Jan 2019
 SELECT
@@ -151,8 +153,8 @@ FROM
     wearabledevicedata w
     INNER JOIN cardiodiagnosis c ON c.cardio_id = w.cardiodiagnosis_cardio_id
 WHERE
-    c.cardio_id = 'cid100'
-    OR c.cardio_id = 'cid200';
+    c.cardio_id BETWEEN 'cid100'
+    AND 'cid200';
 
 -- 17 Display all cardiodiagnosis details who first name start from letter "A"
 SELECT
