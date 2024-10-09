@@ -1,0 +1,52 @@
+DATABASE
+
+1.what(definition)
+2.descrription
+3.Example
+4.real world implementation
+5.why do we need this
+6.Advantages
+7.Disadvantages
+8.Features
+9.Problem statement
+10.Architecture and design
+11.Top 5 articles
+12.top 10 errors
+13.learn similar references
+14.story telling
+15.scale
+16.performance
+17.security
+18.memory
+
+
+raw data --> level 0
+structured information --> level 1
+intelligence -- Level 2
+decision --> level 3
+action --> level 4
+goal --> level 5
+
+
+communicate with precision
+
+Steps to make a query
+1.info that u need
+2. table where the info is present
+3.joint conditions
+4.aggregate questions
+5.other where conditions
+group by
+6.sorting
+
+Data Modelling
+
+ER - Entity Relationship
+Master data- repeatable standard data
+Transactional data - it specific and cannot be modified 
+depending on the scenario we can have 1-1, 1-many or many to many relationship
+minimum and maximum cardinality
+
+when we have 1-1 relationship we can have the data in the same table or different table
+in case of 1-many we should have the primary key of one table in many tables
+in case of many-many we should include the primary keys of two tables in a third table

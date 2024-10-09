@@ -1,0 +1,118 @@
+SQL Queries
+
+
+--  to select all from memberinfo
+-- SELECT * FRom memberinfo;
+
+-- to aelect all those who are from Second district
+-- SELECT * FROm addressinfo where state ='Second District';
+
+-- to select all those who have age greater thean 40
+-- SELECT * from addressinfo WHERE age > 40;
+
+-- to select all males where male is given by 1 and female by 0
+-- Select username,gender 'Male' from addressinfo Where gender = 1;
+
+
+-- LIST OF PATIENTS WHO ARE FEMALE AGED between 40 and 60 
+-- select * from memberinfo where gender = 0 and age between 40 and 60
+
+-- total count of patients in the database
+-- COUNT() is an aggregate function
+-- select Count(*) from memberinfo;
+
+-- total number of females in the table
+-- Count of females is the alias
+-- SELECT count(*) 'Count Of Females:' from memberinfo where gender = 0;
+
+-- total number of male and females
+-- Select count(*) as Total_Members,
+-- 	Count(case when gender = 1 then 1 end) as Male_Members,
+-- 	count(case when gender = 0 then 1 end) as Female_Members
+-- from gender;
+-- select gender, count(*) as Total from memberinfo group by gender;
+
+-- number of males and femaales between 40 and 80
+-- select gender, count(*) as Total from memberinfo where age BETWEEN 40 and 80 group by gender;
+-- SELECT
+-- 	case 
+--     	when gender = 1 as 'Male'
+--         when gender = 0 as 'Female'
+--     end as 'Gender'
+
+
+-- count of people who had cardiodiagnosis in 2019
+-- SELECT count(*) from cardiodiagnosis where date BETWEEN '2019/06/01' and '2019/06/30';
+-- SELECT count(*) from cardiodiagnosis where YEAR(date) = 2019 and MONTH(date) = 6;
+
+-- list of patients sorted by name
+-- select * from memberinfo order by username ASC;
+
+-- list of members and the cities they belong to
+-- SELECT m.username, m.gender, m.age, a.city
+-- from memberinfo m, addressinfo a
+-- where m.member_id = a.memberinfo_member_id;
+
+-- SELECT m.username, m.gender, m.age, a.city
+-- from memberinfo m inner join addressinfo a
+-- on m.member_id = a.memberinfo_member_id;
+
+-- list of patients with their state names who are aged between 60 and 80
+-- select m.username, m.age, m.gender, a.state
+-- from memberinfo m INNER JOIN addressinfo a
+-- on m.member_id = a.memberinfo_member_id
+-- where m.age BETWEEN 60 and 80;
+
+-- total number of patients in each state 
+-- name of patients should not contain spaces
+-- SELECT a.state, COUNT(*) "Total_Number_of_People:"
+-- from addressinfo a INNER join memberinfo m
+-- on m.member_id = a.memberinfo_member_id
+-- where m.age < 40
+-- group by a.state
+-- order by a.state asc;
+
+-- total number of people diagnosed with heart attack age less than 40
+-- SELECT count(*) as 'Total_Number_of_Patients'
+-- from memberinfo m INNER join cardiodiagnosis c
+-- on m.member_id = c.memberinfo_member_id
+-- where m.age < 40 and c.cardioarrestdetected = 1;
+
+-- list of patients with name, gender, age wit city and if they have been diagnosed with cardiac arrest
+-- and their fbp
+-- SELECT 
+-- m.username 'Name', 
+-- m.age 'Age', 
+-- m.gender 'Gender', 
+-- a.city 'City', 
+-- c.cardioarrestdetected 'CA_Detected',
+-- b.fbs 'fbs'
+-- from memberinfo m 
+-- 	INNER join addressinfo a on m.member_id = a.memberinfo_member_id 
+-- 	INNER join cardiodiagnosis c ON m.member_id = c.memberinfo_member_id
+-- 	INNER join bloodtest b ON c.cardio_id = b.cardiodiagnosis_cardio_id
+-- ORDER by m.username asc;
+
+-- list of patients their name, age, city, gender if they have been diagnosed 
+-- heart attck and their rest ecg value for the month may in 2019 
+-- SELECT
+-- m.username, m.age, m.gender, a.city, c.cardioarrestdetected, e.restecg
+-- from memberinfo m 
+-- 	inner join addressinfo a on m.member_id = a.memberinfo_member_id
+--    INNER join cardiodiagnosis c on m.member_id = c.memberinfo_member_id
+--    INNER join ecgreport e on c.cardio_id = e.cardiodiagnosis_cardio_id
+-- where c.cardioarrestdetected = 1 and c.date BETWEEN '2019/05/01' and '2019/05/31';
+
+-- do not write join continuously without the on condition
+-- Insert
+-- insert into memberinfo(member_id,username,firstname,lastname,age, gender, email, phonenumber)
+-- VALUES('1000001100M','krithshetty', 'Kritharth', 'Shetty', 18, 1, 'kritharth16@gmail.com',6361899572);
+-- select * from memberinfo;
+
+-- Update
+-- update memberinfo
+-- set memberinfo.gender = 0
+-- where memberinfo.member_id = 'M104';
+
+-- select * from memberinfo where member_id = 'M104';
+

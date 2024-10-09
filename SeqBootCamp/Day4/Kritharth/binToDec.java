@@ -20,7 +20,7 @@ public class binToDec {
             bn/=10;
         }
 
-        System.out.println(dc);
+        System.out.println("Decimal Value"+ dc);
         sc.close();
     }
     

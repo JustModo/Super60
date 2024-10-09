@@ -1,0 +1,49 @@
+SQL
+
+--  to select all from memberinfo
+-- SELECT * FRom memberinfo;
+
+-- to aelect all those who are from Second district
+-- SELECT * FROm addressinfo where state ='Second District';
+
+-- to select all those who have age greater thean 40
+-- SELECT * from addressinfo WHERE age > 40;
+
+-- to select all males where male is given by 1 and female by 0
+-- Select username,gender 'Male' from addressinfo Where gender = 1;
+
+
+-- LIST OF PATIENTS WHO ARE FEMALE AGED between 40 and 60 
+-- select * from memberinfo where gender = 0 and age between 40 and 60
+
+-- total count of patients in the database
+-- COUNT() is an aggregate function
+-- select Count(*) from memberinfo;
+
+-- total number of females in the table
+-- Count of females is the alias
+-- SELECT count(*) 'Count Of Females:' from memberinfo where gender = 0;
+
+-- total number of male and females
+-- Select count(*) as Total_Members,
+-- 	Count(case when gender = 1 then 1 end) as Male_Members,
+-- 	count(case when gender = 0 then 1 end) as Female_Members
+-- from gender;
+-- select gender, count(*) as Total from memberinfo group by gender;
+
+-- number of males and femaales between 40 and 80
+-- select gender, count(*) as Total from memberinfo where age BETWEEN 40 and 80 group by gender;
+-- SELECT
+-- 	case 
+--     	when gender = 1 as 'Male'
+--         when gender = 0 as 'Female'
+--     end as 'Gender'
+
+
+-- count of people who had cardiodiagnosis in 2019
+-- SELECT count(*) from cardiodiagnosis where date BETWEEN '2019/06/01' and '2019/06/30';
+-- SELECT count(*) from cardiodiagnosis where YEAR(date) = 2019 and MONTH(date) = 6;
+
+-- list of patients sorted by name
+-- select * from memberinfo order by username ASC;
+
