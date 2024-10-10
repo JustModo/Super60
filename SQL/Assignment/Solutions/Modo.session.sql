@@ -27,7 +27,7 @@ ORDER BY
 SELECT
     UNIQUE(a.city)
 FROM
-    - addressinfo a
+    addressinfo a
 ORDER BY
     a.city ASC;
 
@@ -246,8 +246,7 @@ FROM
 
 -- 28 To get the average cholestrol level for members
 SELECT
-    m.username,
-    b.serumcholesterol
+    AVG(b.serumcholesterol) AS 'Avg Cholestrol Level'
 FROM
     memberinfo m
     INNER JOIN cardiodiagnosis c ON c.memberinfo_member_id = m.member_id
