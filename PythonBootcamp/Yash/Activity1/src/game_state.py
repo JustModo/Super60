@@ -21,6 +21,8 @@ class GameState:
             self.__players = [
                 Player(input("Enter Name: ")), Computer()]
         self.__turn = 0
+        self.__moves: List[Tuple[int, int]] = [
+            (i, j) for i in range(3) for j in range(3)]
 
     def update_state(self, position: Tuple[int, int]) -> None:
         try:
@@ -35,14 +37,17 @@ class GameState:
         else:
             current_player.update_move(position)
             self.__game[position] = PLAYER[self.__turn]
+            self.__pop_move(position)
             self.__evaluate_status()
             # Bot Plays
             if not self.__game_end:
                 self.print_game()
                 print("Bob is Thinking...")
                 time.sleep(2)
-                position = self.__players[self.__turn].update_move()
+                position = self.__players[self.__turn].update_move(
+                    self.__moves)
                 self.__game[position] = PLAYER[self.__turn]
+                self.__pop_move(position)
                 self.__evaluate_status()
 
     def __evaluate_status(self) -> None:
@@ -77,6 +82,10 @@ class GameState:
             print()
         if not self.__game_end:
             print(f"\nIt's {self.__players[self.__turn].name}'s Turn!\n")
+
+    def __pop_move(self, position):
+        if position in self.__moves:
+            self.__moves.remove(position)
 
     def is_gameover(self) -> bool:
         return self.__game_end
