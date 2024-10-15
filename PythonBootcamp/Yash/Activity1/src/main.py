@@ -4,7 +4,7 @@ from game_state import GameState
 def main():
     while True:
         print("\nTic Tac Toe\n")
-        res = input("Do you have Friends? ")
+        res = input("Do you have Friends? ").lower()
         multiplayer: bool
         if (res == 'y' or res == 'yes'):
             multiplayer = True

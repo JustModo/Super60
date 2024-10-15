@@ -13,8 +13,7 @@ class Player:
         self.__diag: List[int] = [0, 0]
 
     def update_move(self, position: Tuple[int, int]) -> None:
-        x = position[0]
-        y = position[1]
+        x, y = position
         self.__row[x] += 1
         self.__column[y] += 1
         if x == y:
