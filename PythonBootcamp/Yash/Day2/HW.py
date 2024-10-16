@@ -11,8 +11,9 @@
 # Display the annual gross, annual net and tax payable.
 
 
-def calculate_tax(annual_income, tax_investment):
-
+def calculate_tax(annual_income: int, tax_investment: int) -> float:
+    
+    # Max investment value
     MAX_INVESTMENT = 150000
 
     if tax_investment >= 150000:
@@ -32,7 +33,7 @@ def calculate_tax(annual_income, tax_investment):
     return taxable_amount * tax_percent
 
 
-def print_report(employee_name, employee_id, gross_annual_salary, net_annual_salary, taxable_amount):
+def print_report(employee_name: str, employee_id: int, gross_annual_salary: float, net_annual_salary: float, taxable_amount: float) -> None:
     print("\nTax Report: ")
     print(f"Employee Name: {employee_name}")
     print(f"Employee ID: {employee_id}")
@@ -42,26 +43,30 @@ def print_report(employee_name, employee_id, gross_annual_salary, net_annual_sal
 
 
 def main():
+    
     # Input all Details
     employee_name = str(input("Employee Name: "))
     employee_id = int(input("Employee ID: "))
-    basic_salary = int(input("Basic Salary: "))
+    basic_salary = int(input("Basic Salary (Monthly): "))
     special_allowance = int(input("Special Allowance (Monthly): "))
     percentage_bonus = int(input("Percentage Bonus: "))
     tax_saving_investment = int(input("Tax Saving Investment (Monthly): "))
 
     # Annual Income without bonus
     gross_annual_salary = (basic_salary + special_allowance) * 12
+    
     # Annual Income with bonus
     gross_annual_salary += gross_annual_salary * (percentage_bonus/100)
-
+    
     yearly_tax_saving_investment = tax_saving_investment * 12
 
+    # Calculate taxed amount
     taxable_amount = calculate_tax(
         gross_annual_salary, yearly_tax_saving_investment)
 
     net_annual_salary = gross_annual_salary - taxable_amount
 
+    # Print tax report
     print_report(employee_name, employee_id, gross_annual_salary,
                  net_annual_salary, taxable_amount)
 
