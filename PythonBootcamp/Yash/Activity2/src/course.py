@@ -3,7 +3,6 @@ from typing import List
 
 
 class Course:
-
     def __init__(self, name: str, *modules: Module) -> None:
         self.__name: str = name
         self.__module_list: List[Module] = []

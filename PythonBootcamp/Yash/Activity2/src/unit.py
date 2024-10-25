@@ -3,7 +3,6 @@ from typing import List
 
 
 class Unit:
-
     def __init__(self, name: str, duration: int, *topics) -> None:
         self.__name: str = name
         self.__duration = duration
