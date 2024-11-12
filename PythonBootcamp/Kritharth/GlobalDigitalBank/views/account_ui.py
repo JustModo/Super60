@@ -89,10 +89,30 @@ class AccountUI:
 
 
     def deposit_funds(self):
-        account_number = int(input('Enter account number: '))
-        
+        account_number = int(input("Enter your account number: "))
+        amount = float(input("Enter amount to deposit: "))
+        account = next(
+            (acc for acc in AccountRepository.accounts if acc.account_number == account_number), None)
+
+        if account:
+            try:
+                AccountManager().deposit(account, amount)
+                print("Amount deposited successfully")
+            except Exception as e:
+                print("Error:", e)
+        else:
+            print("Account not found. Please try again.")
+
 
     def transfer_funds(self):
-        pass
+        to_account_number = int(input('To account number: '))
+        from_account_number = int(input('From account number: '))
+        amount = float(input('Enter amount to be transferred: '))
+        account_to = next(acc for acc in AccountRepository.accounts if acc.account_number == to_account_number)
+        account_from = next(acc for acc in AccountRepository.accounts if acc.account_number == from_account_number)
+        
+        if account_from and account_to:
+            try:
+                pin_number = int(input('Enter your pin number: '))
 
     
