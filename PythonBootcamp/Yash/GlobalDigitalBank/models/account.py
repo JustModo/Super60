@@ -1,5 +1,5 @@
-from repositories.account_repository import AccountRepository
 from models.privileges import Privilege
+from repositories.account_repository import AccountRepository
 
 
 class Account:

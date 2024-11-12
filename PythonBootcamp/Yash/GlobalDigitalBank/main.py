@@ -1,4 +1,8 @@
-from models.account import Account
 
-a1 = Account(account_number="124324", balance="1000000000",
-             is_active=True, name="Me", privilege="Special")
+
+from views.account_ui import AccountUI
+
+
+if __name__ == "__main__":
+    account_ui = AccountUI()
+    account_ui.start()

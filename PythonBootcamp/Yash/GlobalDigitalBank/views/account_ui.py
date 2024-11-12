@@ -1,11 +1,10 @@
-from traceback import print_tb
 from repositories.account_repository import AccountRepository
 from services.account_manager import AccountManager
 
 
 class AccountUI:
 
-    def start(self):
+    def start(self) -> None:
         while True:
             print('\nWe1come to Global Digital Bank')
             print('\nSelect an option')
@@ -34,7 +33,7 @@ class AccountUI:
                 case _:
                     print("Not Valid")
 
-    def open_account(self):
+    def open_account(self) -> None:
         account_type = input(
             "Enter account type (savings/current): ").strip().lower()
         name = input("Enter account holder's name: ")
@@ -77,7 +76,7 @@ class AccountUI:
         print(account_type.capitalize(
         ), "Account opened successfully. Account Number: ", account.account_number)
 
-    def close_account(self):
+    def close_account(self) -> None:
         account_number = int(input("Enter your account number: "))
         account = next(
             (acc for acc in AccountRepository.accounts if acc.account_number == account_number))
@@ -92,7 +91,7 @@ class AccountUI:
         else:
             print('Account Not Found. Please try again')
 
-    def withdraw_funds(self):
+    def withdraw_funds(self) -> None:
         account_number = input("Enter your account number: ")
         amount = float(input("Enter amount to withdraw: "))
         pin_number = int(input("Enter your pin number: "))
@@ -109,7 +108,7 @@ class AccountUI:
         else:
             print("Account not found. Please try again.")
 
-    def deposit_funds(self):
+    def deposit_funds(self) -> None:
         account_number = int(input("Enter your account number: "))
         amount = float(input("Enter amount to deposit: "))
         account = next(
@@ -124,5 +123,24 @@ class AccountUI:
         else:
             print("Account not found. Please try again.")
 
-    def transfer_funds(self):
-        pass
+
+    def transfer_funds(self) -> None:
+        from_account_number = int(input("Enter your account number: "))
+        to_account_number = int(
+            input("Enter your recipient's number: "))
+        amount = float(input("Enter amount to deposit: "))
+        pin_number = int(input("Enter your pin number: "))
+
+        from_account = next(
+            (acc for acc in AccountRepository.accounts if acc.account_number == from_account_number), None)
+        to_account = next(
+            (acc for acc in AccountRepository.accounts if acc.account_number == to_account_number), None)
+
+        if from_account and to_account:
+            try:
+                AccountManager().transfer(from_account, to_account, amount, pin_number)
+                print("Amount deposited successfully")
+            except Exception as e:
+                print("Error:", e)
+        else:
+            print("Accounts not found. Please try again.")
