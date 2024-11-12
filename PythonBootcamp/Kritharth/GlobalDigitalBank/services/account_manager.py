@@ -5,9 +5,6 @@
 #Check if account is active
 # Validate pin number
 
-
-
-from transactions_manager import TransactionManager
 from models.account import Account
 from models.savings import Savings
 from models.current import Current
@@ -18,7 +15,7 @@ from services.account_privileges_manager import AccountPrivilegesManager
 
 
 class AccountManager:
-    def open_account(self,account_type,**kwargs):
+    def open_account(self,account_type:str,**kwargs):
         if account_type == 'savings':
             new_account = Savings(**kwargs)
         elif account_type == 'current':
@@ -26,7 +23,7 @@ class AccountManager:
         else:
             raise ValueError('Invalid account type')
     
-        AccountRepository.save_account(new_account):
+        AccountRepository.save_account(new_account)
         return new_account
     
     def check_account_action(self,account:Account):
