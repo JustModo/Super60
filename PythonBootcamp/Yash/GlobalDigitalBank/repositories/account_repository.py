@@ -2,11 +2,11 @@
 
 from typing import List
 
-from models.account import Account
+# from models.account import Account
 
 
 class AccountRepository:
-    accounts: List[Account] = []
+    accounts = []
     account_counter = 1000
 
     # Method to  generate a new account number
@@ -17,7 +17,7 @@ class AccountRepository:
 
     # Method to save accounts
     @classmethod
-    def save_aacount(cls, accounts):
+    def save_account(cls, accounts):
         cls.accounts.append(accounts)
 
     # Method to get all accounts

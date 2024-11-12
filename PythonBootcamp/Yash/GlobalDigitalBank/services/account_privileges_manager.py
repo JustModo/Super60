@@ -5,7 +5,7 @@ from typing import Dict
 class AccountPrivilegeList:
     privileges: Dict[Privilege, int] = {
         'PREMIUM': 100000,
-        'GOD': 50000,
+        'GOLD': 50000,
         'SILVLER': 25000,
     }
 

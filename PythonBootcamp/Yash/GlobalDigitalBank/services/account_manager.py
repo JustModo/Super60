@@ -1,3 +1,4 @@
+from asyncio import constants
 from exceptions.exceptions import AccountNotActiveException, InsufficientFundsException, InvalidPinException, TransferLimitExceededException
 from models.account import Account
 from models.savings import Savings
@@ -23,7 +24,7 @@ class AccountManager:
         else:
             raise ValueError("Not Valid Account Type")
 
-        AccountRepository.save_aacount(new_account)
+        AccountRepository.save_account(new_account)
         return new_account
 
     def check_account_active(self, account: Account) -> None:
@@ -62,6 +63,7 @@ class AccountManager:
 
         limit = AccountPrivilegeList.get_transfer_limit(from_account.privilege)
         if amount > limit:
+            print(amount, limit)
             raise TransferLimitExceededException("Transfer Limit Exceeded")
 
         from_account.balance -= amount

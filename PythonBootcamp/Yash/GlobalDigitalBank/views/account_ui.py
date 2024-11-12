@@ -28,7 +28,7 @@ class AccountUI:
                     self.deposit_funds()
                 case 5:
                     self.transfer_funds()
-                case 6:
+                case 9:
                     break
                 case _:
                     print("Not Valid")
@@ -50,9 +50,10 @@ class AccountUI:
                 account_type=account_type,
                 name=name,
                 balance=amount,
+                privilege=privilege,
+                pin_number=pin_number,
                 date_of_birth=date_of_birth,
-                gender=gender,
-                pin_number=pin_number
+                gender=gender
             )
 
         elif account_type == 'current':
@@ -63,10 +64,10 @@ class AccountUI:
                 account_type=account_type,
                 name=name,
                 balance=amount,
-                registration_number=registration_number,
-                website_url=website_url,
                 pin_number=pin_number,
-                privilege=privilege
+                privilege=privilege,
+                registration_number=registration_number,
+                website_url=website_url
             )
 
         else:
@@ -92,7 +93,7 @@ class AccountUI:
             print('Account Not Found. Please try again')
 
     def withdraw_funds(self) -> None:
-        account_number = input("Enter your account number: ")
+        account_number = int(input("Enter your account number: "))
         amount = float(input("Enter amount to withdraw: "))
         pin_number = int(input("Enter your pin number: "))
 
@@ -122,7 +123,6 @@ class AccountUI:
                 print("Error:", e)
         else:
             print("Account not found. Please try again.")
-
 
     def transfer_funds(self) -> None:
         from_account_number = int(input("Enter your account number: "))
