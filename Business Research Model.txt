@@ -1,0 +1,24 @@
+standards
+
+1 month -> 20 working days -> 8hrs a day ==> 160 personmonths
+
+3 types of research
+--market research
+---understand market dynamics
+---identify target segments
+---market size
+---growth trends
+---customer needs
+(around 640 hrs is a decent time for research for product and 1200hrs for prototyping, 400hrs for poc(proof of concept))
+---mvp(minimum viable product)
+---market gaps
+---CFB analysis(cheaper faster better)
+---user experience research
+---business intelligence research
+---industry research
+---policy and regulatory research
+---operations research
+
+
+--domain
+--tech research(ex:apache flink,apache kaafka,edge ai)
