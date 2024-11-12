@@ -1,6 +1,9 @@
-from math import pi
+from models.savings import Savings
+from models.current import Current
+from services.account_privileges_manager import AccountPrivilegesManager
 from services.account_manager import AccountManager
 from services.transactions_manager import TransactionManager
+from exceptions.exceptions import *
 from repositories.account_repository import AccountRepository
 
 class AccountUI:
@@ -114,5 +117,13 @@ class AccountUI:
         if account_from and account_to:
             try:
                 pin_number = int(input('Enter your pin number: '))
+                AccountManager().transfer(account_from,account_to,amount,pin_number)
+                print('Amount transferred successfully!')
+            except Exception as e:
+                print("Error: ",e)
+        else:
+            print("Account Not Found! Please try again")
+            return
+        
 
     
