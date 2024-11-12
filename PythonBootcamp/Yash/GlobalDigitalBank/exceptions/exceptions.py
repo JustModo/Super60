@@ -12,3 +12,7 @@ class InsufficientFundsException(Exception):
 
 class InvalidPinException(Exception):
     pass
+
+
+class AccountNotActiveException(Exception):
+    pass

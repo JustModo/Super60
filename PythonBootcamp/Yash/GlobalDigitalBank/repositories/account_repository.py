@@ -1,5 +1,12 @@
+
+
+from typing import List
+
+from models.account import Account
+
+
 class AccountRepository:
-    accounts = []
+    accounts: List[Account] = []
     account_counter = 1000
 
     # Method to  generate a new account number

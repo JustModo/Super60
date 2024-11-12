@@ -1,10 +1,13 @@
 from repositories.account_repository import AccountRepository
+from models.privileges import Privilege
 
 
 class Account:
-    def __init__(self, name: str, balance: int, is_active: bool, privilege: str) -> None:
+    def __init__(self, name: str, balance: int, privilege: Privilege, pin_number: int) -> None:
         self.account_number = AccountRepository.generate_account_number()
         self.name = name
         self.balance = balance
-        self.is_active = is_active
         self.privilege = privilege
+        self.pin_number = pin_number
+        self.is_active = True
+        self.closed_date = None

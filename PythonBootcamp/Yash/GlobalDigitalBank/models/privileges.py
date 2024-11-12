@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class AccountPrivilege(Enum):
+class Privilege(Enum):
     PREMIUM = "premium"
     GOLD = "gold"
     SILVER = "silver"
