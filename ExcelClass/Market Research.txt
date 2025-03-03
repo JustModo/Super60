@@ -1,0 +1,18 @@
+Market Research
+-Purpose
+-Key Areas
+-Methodology
+-Key Considerations
+-640 hours ( min )
+-1200-2000+ ( prototype )
+-4000+ ( Proof of Concepts )
+-10000 MVP ( Minimum Viable Product )
+
+Domain Research / Product Research
+Tech Research - Apache Flink,  Apache Kafka, Edge AI
+
+CFB Analysis ( Cheaper Faster Better )
+
+Business Intelligence ( BI ) Research
+
+Operations Research

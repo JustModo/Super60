@@ -33,3 +33,9 @@ All tests in a module       pytest path/test_module.py
 all test in a directory     pytest path
 tests matching a keyword    pytest -k "pattern"
 
+Flags
+
+--tb=no         No tracebacks
+-v              Verbose mode
+-k "pattern"    Run tests matching the given pattern
+
