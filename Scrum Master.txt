@@ -1,0 +1,19 @@
+Scrum Master
+
+-23 features
+-status of project
+-break down the tasks 
+-timeline
+-background in office mode
+-timings:2:45-3:30(set 1)
+	 3:45-4:30(set 2)
+-create a simple ppt--> less description
+			more azure DevOps
+			more of data(numbers)--core features count
+					     --team features count
+					      --code walkthrough
+					     --screenshots of Azure DevOps
+--leftmost side have a srm logo
+--right side upper extreme end talencia global logo
+--5 mins for opening of presentation
+--each person has to give a walkthrough of their code for *5 mins* of what they have done 	
